@@ -1,0 +1,11 @@
+# .gemini/Taskfile.yml
+version: "3"
+
+tasks:
+  generate-context:
+    desc: "Generates the .gemini/context.json file for the AI agent."
+    cmds:
+      # Use PROJECT_DIR to ensure the path is always relative to the project root.
+      - "../scripts/generate_ai_context.sh"
+    generates:
+      - "context.json"

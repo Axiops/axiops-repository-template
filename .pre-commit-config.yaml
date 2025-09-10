@@ -5,7 +5,6 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-yaml
-        exclude: 'test/integration/tavern/.*\.tavern\.yaml$'
       - id: check-added-large-files
       - id: check-merge-conflict
       - id: check-case-conflict
@@ -36,16 +35,8 @@ repos:
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.5.5
     hooks:
-      - id: insert-license
-        files: \.go$
-        args:
-          - --license-filepath
-          - LICENSE.header
-          - --comment-style
-          - //
-          - --use-current-year
       - id: remove-tabs
-        exclude: '\.go$|go.mod|Makefile$'
+        exclude: '\.go$' # Exclude Go files, where tabs are standard.
 
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.1.0

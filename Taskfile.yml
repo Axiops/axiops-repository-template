@@ -1,6 +1,11 @@
 # Taskfile.yml
 version: "3"
 
+includes:
+  ai:
+    taskfile: .gemini/Taskfile.yml
+    dir: ./.gemini
+
 vars:
   # The name of the binary to be built.
   # This should be overridden in the project's own Taskfile.

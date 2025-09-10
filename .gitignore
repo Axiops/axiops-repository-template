@@ -60,3 +60,5 @@ checksums.txt
 
 # Claude Code local settings
 .claude/*.local.*
+# Gemini AI Agent context file (generated, ephemeral)
+.gemini/context.json
