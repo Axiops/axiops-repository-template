@@ -28,7 +28,7 @@ archives:
 
 # Checksum configuration.
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 # Snapshot configuration for pre-releases.
 snapshot:

@@ -1,22 +1,25 @@
-; https://editorconfig.org/
-
+# Top-level EditorConfig file
 root = true
 
+# Universal settings for all file types
 [*]
-charset = utf-8
 end_of_line = lf
-indent_size = 4
-indent_style = tab
-insert_final_newline = true
-max_line_length = 80
+charset = utf-8
 trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 88  # A modern standard, avoids conflicts with Black/Prettier defaults
 
-[{go.mod,go.sum,*.go,*.html}]
+# Go files use tabs for indentation, as is the standard.
+# A longer line length is acceptable for Go code.
+[*.go]
+indent_style = tab
 max_line_length = 120
 
-[*.md]
+# YAML and Markdown files use 2 spaces for indentation.
+[*.{yaml,yml,md}]
 indent_style = space
-max_line_length = 72
+indent_size = 2
 
-[*.{yaml,yml}]
-indent_style = space
+# Markdown files should have a shorter line length for readability.
+[*.md]
+max_line_length = 80

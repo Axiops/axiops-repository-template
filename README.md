@@ -15,12 +15,14 @@
 ### Installation & Build
 
 1.  **Clone the repository:**
+
     ```sh
     git clone https://github.com/Axiops/{{.PROJECT_NAME}}.git
     cd {{.PROJECT_NAME}}
     ```
 
 2.  **Install development tools:**
+
     ```sh
     task install-hooks
     ```

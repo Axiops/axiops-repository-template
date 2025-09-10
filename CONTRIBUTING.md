@@ -42,6 +42,7 @@ This project and everyone participating in it is governed by the [Axiops Code of
 We adhere to the [Conventional Commits](https://www.conventionalcommits.org/) specification. `commitlint` is installed as a pre-commit hook to enforce this.
 
 Examples:
+
 - `feat(api): add new endpoint for workspaces`
 - `fix(storage): correct query for SQLite compatibility`
 - `docs(readme): update getting started guide`
