@@ -1,10 +1,14 @@
 name: Lint and Test
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+# To enable this workflow, uncomment the "on:" section below.
+# This workflow is disabled by default in the template repository
+# because it will fail until Go code and tests are added.
+#
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
 
 jobs:
   lint-and-test:

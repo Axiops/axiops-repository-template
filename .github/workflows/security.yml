@@ -1,12 +1,16 @@
 name: Security Scan
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '30 5 * * 1' # Run weekly on Monday morning
+# To enable this workflow, uncomment the "on:" section below.
+# This workflow is disabled by default in the template repository
+# because it will fail until Go code is added.
+#
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+#   schedule:
+#     - cron: '30 5 * * 1' # Run weekly on Monday morning
 
 jobs:
   codeql:
