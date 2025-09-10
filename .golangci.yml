@@ -1,0 +1,144 @@
+---
+version: "2"
+linters:
+    default: none
+    enable:
+        - bodyclose
+        - depguard
+        - dogsled
+        - dupl
+        - errcheck
+        - funlen
+        - gochecknoglobals
+        - gochecknoinits
+        - gocognit
+        - goconst
+        - gocritic
+        - gocyclo
+        - goprintffuncname
+        - gosec
+        - govet
+        - ineffassign
+        - lll
+        - misspell
+        - mnd
+        - staticcheck
+        - unconvert
+        - unparam
+        - unused
+    settings:
+        depguard:
+            rules:
+                main:
+                    deny:
+                        - pkg: logutils
+                        - pkg: github.com/sirupsen/logrus
+        dogsled:
+            max-blank-identifiers: 2
+        dupl:
+            threshold: 100
+        errcheck:
+            check-type-assertions: true
+            check-blank: true
+        funlen:
+            lines: 60
+            statements: 40
+        gocognit:
+            min-complexity: 15
+        goconst:
+            min-len: 3
+            min-occurrences: 3
+        gocritic:
+            disabled-checks:
+                - yodaStyleExpr
+                - hugeParam
+            enabled-tags:
+                - diagnostic
+                - style
+                - performance
+                - opinionated
+            settings:
+                rangeValCopy:
+                    sizeThreshold: 1024
+        gocyclo:
+            min-complexity: 15
+        govet:
+            disable:
+                - fieldalignment
+            enable-all: true
+        lll:
+            line-length: 120
+            tab-width: 4
+        misspell:
+            locale: US
+            ignore-rules:
+                - marshalled
+        mnd:
+            checks:
+                - argument
+                - case
+                - condition
+                - operation
+                - return
+                - assign
+        unparam:
+            check-exported: true
+        unused:
+            exported-fields-are-used: false
+    exclusions:
+        generated: lax
+        presets:
+            - comments
+            - common-false-positives
+            - legacy
+            - std-error-handling
+        rules:
+            - linters:
+                  - lll
+              source: ^.*Entry[(].+[)],
+            - linters:
+                  - dupl
+                  - funlen
+                  - gocognit
+              path: _test\.go
+            - linters:
+                  - dupl
+                  - funlen
+                  - gocognit
+                  - gocyclo
+                  - ineffassign
+              path: handlers/(roles|service_accounts|environment_handlers)\.go
+        paths:
+            - third_party$
+            - builtin$
+            - examples$
+            # Exclude sqlc-generated database files
+            - db/.*\.sql\.go$
+            - db/models\.go$
+            - db/querier\.go$
+            - db/db\.go$
+            # Exclude mockery-generated files
+            - mocks/
+formatters:
+    enable:
+        - gofmt
+        - goimports
+    settings:
+        gofmt:
+            simplify: true
+        goimports:
+            local-prefixes:
+                - truetickets
+    exclusions:
+        generated: lax
+        paths:
+            - third_party$
+            - builtin$
+            - examples$
+            # Exclude sqlc-generated database files
+            - db/.*\.sql\.go$
+            - db/models\.go$
+            - db/querier\.go$
+            - db/db\.go$
+            # Exclude mockery-generated files
+            - mocks/

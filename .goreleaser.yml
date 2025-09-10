@@ -1,0 +1,67 @@
+# .goreleaser.yml
+# This is a minimal, best-practice configuration for GoReleaser.
+# It will be part of the axiops-repository-template.
+version: 2
+
+# Project-specific configuration.
+# The project name will be inferred from the repository name.
+project_name: "{{ .ProjectName }}"
+
+# Build configuration.
+builds:
+  - # The main build configuration.
+    # GoReleaser will build for all major platforms (Linux, macOS, Windows) by default.
+    id: "{{ .ProjectName }}"
+    main: ./cmd/{{ .ProjectName }}
+    binary: "{{ .ProjectName }}"
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+
+# Archive configuration (for creating .tar.gz and .zip files).
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the naming
+    # scheme of goreleaser's install script (e.g. `go install ...`)
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+
+# Checksum configuration.
+checksum:
+  name_template: 'checksums.txt'
+
+# Snapshot configuration for pre-releases.
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+# Changelog configuration. This is the key part.
+changelog:
+  # Sorts the changelog entries asc or desc (asc is conventional).
+  sort: asc
+  # Group commits by their type.
+  groups:
+    - title: "🚀 Features"
+      types:
+        - "feat"
+    - title: "🐛 Bug Fixes"
+      types:
+        - "fix"
+    - title: "📖 Documentation"
+      types:
+        - "docs"
+    - title: "🔨 Refactors"
+      types:
+        - "refactor"
+    - title: "Other"
+      types:
+        - "build"
+        - "perf"
+        - "style"
+        - "test"
+  # Filter out commits that don't add value to the changelog.
+  filters:
+    exclude:
+      - "^chore"
+      - "^ci"
+      - "Merge pull request"
+      - "Merge branch"

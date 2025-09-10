@@ -1,0 +1,49 @@
+# Taskfile.yml
+version: '3'
+
+vars:
+  # The name of the binary to be built.
+  # This should be overridden in the project's own Taskfile.
+  BINARY_NAME: "changeme"
+
+tasks:
+  default:
+    desc: "Lists all available tasks."
+    cmds:
+      - task --list
+
+  build:
+    desc: "Builds the Go binary for the current platform."
+    cmds:
+      - go build -o ./bin/{{.BINARY_NAME}} ./cmd/{{.BINARY_NAME}}
+
+  test:
+    desc: "Runs all tests (unit and integration)."
+    cmds:
+      - go test -v -race -cover ./...
+
+  lint:
+    desc: "Runs the golangci-lint linter."
+    cmds:
+      - golangci-lint run
+
+  generate:
+    desc: "Runs go generate for things like mocks."
+    cmds:
+      - go generate ./...
+
+  tidy:
+    desc: "Tidies and vendors Go modules."
+    cmds:
+      - go mod tidy
+      - go mod vendor
+
+  clean:
+    desc: "Removes build artifacts."
+    cmds:
+      - rm -rf ./bin
+
+  install-hooks:
+    desc: "Installs pre-commit hooks."
+    cmds:
+      - pre-commit install
